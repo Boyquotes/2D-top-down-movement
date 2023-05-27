@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
-@onready var anim_player = $Graphics/AnimationPlayer
+
+var facing_right = true
 
 @export var move_speed = 250
 
-var facing_right = true
+@onready var anim_player = $Graphics/AnimationPlayer
+
 
 func _physics_process(_delta):
 	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized() * move_speed
@@ -20,7 +22,7 @@ func _physics_process(_delta):
 	else:
 		anim_player.play("walk")
 
+
 func flip():
 	$Graphics.scale.x *= -1
 	facing_right = !facing_right
-	print("flipped")
